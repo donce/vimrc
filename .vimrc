@@ -53,7 +53,6 @@ function! CheckDirectory(var1)
 	let path=$HOME . "/.vim/"
 	if isdirectory(path . name) == 0
 		call mkdir(name, path)
-		echo "Create " . name
 	endif
 endfunction
 
