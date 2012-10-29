@@ -51,8 +51,8 @@ set hlsearch
 function! CheckDirectory(var1)
 	let name=a:var1
 	let path=$HOME . "/.vim/"
-	if isdirectory(path . name) == 0
-		call mkdir(name, path)
+	if !isdirectory(path . name)
+		call mkdir(name, path)"TODO: mkdir fails opening from home at vu
 	endif
 endfunction
 
