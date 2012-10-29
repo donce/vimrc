@@ -46,10 +46,23 @@ set smartcase
 set incsearch
 set hlsearch
 
+
+"create dir if does not exist
+function! CheckDirectory(var1)
+	let name=a:var1
+	let path=$HOME . "/.vim/"
+	if isdirectory(path . name) == 0
+		call mkdir(name, path)
+		echo "Create " . name
+	endif
+endfunction
+
 if has('persistent_undo')
 	set undofile
+	call CheckDirectory("undo")
 	set undodir=~/.vim/undo/
 endif
 
 set swapfile
+call CheckDirectory("swap")
 set directory=~/.vim/swap/
