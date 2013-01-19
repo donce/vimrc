@@ -1,10 +1,5 @@
 syntax on
 
-"colors
-set bg=dark
-set t_Co=256
-colo lucius
-
 set nu
 set nocp
 set bs=2
@@ -67,10 +62,9 @@ set hlsearch
 
 "create dir if does not exist
 function! CheckDirectory(var1)
-	let name=a:var1
-	let path=$HOME . "/.vim/"
-	if !isdirectory(path . name)
-		call mkdir(name, path)"TODO: mkdir fails opening from home at vu
+	let name=$HOME . "/.vim/" . a:var1 
+	if !isdirectory(name)
+		call mkdir(name, "p")"TODO: mkdir fails opening from home at vu
 	endif
 endfunction
 
@@ -102,3 +96,9 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
+
+"colors
+call CheckDirectory("colors")
+set bg=dark
+set t_Co=256
+colo lucius
