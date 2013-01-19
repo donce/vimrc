@@ -22,18 +22,23 @@ inoremap {{     {
 inoremap {}     {}
 inoremap        (  ()<Left>
 inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-"compiling
 
+"building
+noremap <F6> :!./%:r<CR><CR>
+noremap <F7> :!grader ./%:r<CR>
 if filereadable("Makefile") || filereadable("makefile")
 	noremap <F5> :make<CR>:copen<CR><CR>
 else
+	"cpp
 	autocmd FileType cpp noremap <F5> :make %:r<CR>:copen<CR><CR>
-	autocmd FileType python nnoremap <F5> :w<CR>:!python %<CR>
+	"python
+	autocmd FileType python nnoremap <F6> :w<CR>:!python %<CR>
+	"sh
 	autocmd FileType sh nnoremap <F5> :w<CR>:!./%<CR>
+	"java
+	autocmd FileType java nnoremap <F5> :w<CR>:!javac %<CR>
+	autocmd FileType java nnoremap <F6> :!java %:r<CR>
 endif
-
-noremap <F6> :!./%:r<CR><CR>
-noremap <F7> :!grader ./%:r<CR>
 
 map  \c 
 
