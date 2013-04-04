@@ -4,11 +4,6 @@ call pathogen#helptags()
 
 syntax on
 
-"colors
-set bg=dark
-set t_Co=256
-colo lucius
-
 set nu
 set nocp
 set bs=2
@@ -31,24 +26,27 @@ inoremap {{     {
 inoremap {}     {}
 inoremap        (  ()<Left>
 inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-"compiling
 
 au BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
 
+"building
+noremap <F6> :!./%:r<CR><CR>
+noremap <F7> :!grader ./%:r<CR>
 if filereadable("Makefile") || filereadable("makefile")
 	noremap <F5> :wa<CR>:make<CR>:copen<CR><CR>
 	noremap <F6> :wa<CR>:make run<CR><CR>
 	noremap <F12> :make clean<CR><CR><CR>
 else
-	autocmd FileType cpp noremap <F5> :w<CR>:make %:r<CR>:copen<CR><CR>
-	autocmd FileType python nnoremap <F5> :w<CR>:!python %<CR>
+	"cpp
+	autocmd FileType cpp noremap <F5> :make %:r<CR>:copen<CR><CR>
+	"python
+	autocmd FileType python nnoremap <F6> :w<CR>:!python %<CR>
+	"sh
 	autocmd FileType sh nnoremap <F5> :w<CR>:!./%<CR>
-	autocmd FileType markdown nnoremap <F5> :!markdown % > %:r.html<CR><CR>
-
-	noremap <F6> :!./%:r<CR><CR>
+	"java
+	autocmd FileType java nnoremap <F5> :w<CR>:!javac %<CR>
+	autocmd FileType java nnoremap <F6> :!java %:r<CR>
 endif
-
-noremap <F7> :!grader ./%:r<CR>
 
 map  \c 
 
@@ -77,10 +75,9 @@ set hlsearch
 
 "create dir if does not exist
 function! CheckDirectory(var1)
-	let name=a:var1
-	let path=$HOME . "/.vim/"
-	if !isdirectory(path . name)
-		call mkdir(name, path)"TODO: mkdir fails opening from home at vu
+	let name=$HOME . "/.vim/" . a:var1 
+	if !isdirectory(name)
+		call mkdir(name, "p")"TODO: mkdir fails opening from home at vu
 	endif
 endfunction
 
@@ -112,3 +109,9 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
+
+"colors
+call CheckDirectory("colors")
+set bg=dark
+set t_Co=256
+colo lucius
