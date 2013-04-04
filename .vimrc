@@ -1,3 +1,7 @@
+call pathogen#infect()
+call pathogen#helptags()
+
+
 syntax on
 
 "colors
@@ -29,15 +33,21 @@ inoremap        (  ()<Left>
 inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 "compiling
 
+au BufWritePost *.c,*.cpp,*.h silent! !ctags -R &
+
 if filereadable("Makefile") || filereadable("makefile")
-	noremap <F5> :make<CR>:copen<CR><CR>
+	noremap <F5> :wa<CR>:make<CR>:copen<CR><CR>
+	noremap <F6> :wa<CR>:make run<CR><CR>
+	noremap <F12> :make clean<CR><CR><CR>
 else
-	autocmd FileType cpp noremap <F5> :make %:r<CR>:copen<CR><CR>
+	autocmd FileType cpp noremap <F5> :w<CR>:make %:r<CR>:copen<CR><CR>
 	autocmd FileType python nnoremap <F5> :w<CR>:!python %<CR>
 	autocmd FileType sh nnoremap <F5> :w<CR>:!./%<CR>
+	autocmd FileType markdown nnoremap <F5> :!markdown % > %:r.html<CR><CR>
+
+	noremap <F6> :!./%:r<CR><CR>
 endif
 
-noremap <F6> :!./%:r<CR><CR>
 noremap <F7> :!grader ./%:r<CR>
 
 map  \c 
