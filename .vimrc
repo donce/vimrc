@@ -50,6 +50,8 @@ endif
 
 map  \c 
 
+nnoremap <F12> :GundoToggle<CR>
+
 "folding
 set foldmethod=syntax
 set foldnestmax=1
@@ -61,7 +63,7 @@ let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 
-nnoremap <left> <ESC>:Vexplore<CR>
+nnoremap <left> <ESC>:NERDTreeToggle<CR>
 set scrolloff=5
 set wildmenu
 set wildmode=longest:full,full
