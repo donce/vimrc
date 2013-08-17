@@ -116,4 +116,4 @@ set completeopt=menuone,menu,longest,preview
 call CheckDirectory("colors")
 set bg=dark
 set t_Co=256
-colo lucius
+colo molokai
