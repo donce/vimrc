@@ -1,6 +1,6 @@
 call pathogen#infect()
 call pathogen#helptags()
-
+  
 
 syntax on
 
@@ -11,13 +11,16 @@ set mouse=a
 set autochdir
 set cursorline
 set autoread
-filetype plugin on
+filetype plugin indent on
 
 "indentation
-set softtabstop=4
-set shiftwidth=4
 set tabstop=4
-set smartindent
+set shiftwidth=2
+set softtabstop=0
+set smarttab
+set expandtab
+set autoindent
+
 
 "braces
 inoremap {      {}<Left>
