@@ -4,6 +4,9 @@ call pathogen#helptags()
 
 syntax on
 
+"The Silver Searcher
+let g:ag_working_path_mode="r"
+
 set nu
 set nocp
 set bs=2
