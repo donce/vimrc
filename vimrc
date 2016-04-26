@@ -1,15 +1,18 @@
 call pathogen#infect('vimrc/bundle/{}')
 call pathogen#helptags()
-  
 
 syntax on
+ 
+"Line length marker
+set textwidth=99
+set colorcolumn=+1 
 
 "The Silver Searcher
 let g:ag_working_path_mode="r"
 
 set nu
 set nocp
-set bs=2
+set backspace=2
 set mouse=a
 set autochdir
 set cursorline
@@ -17,8 +20,9 @@ set autoread
 filetype plugin indent on
 
 "indentation
-set tabstop=4
+set tabstop=2
 set shiftwidth=2
+set shiftround
 set softtabstop=0
 set smarttab
 set expandtab
