@@ -2,6 +2,12 @@ call pathogen#infect('vimrc/bundle/{}')
 call pathogen#helptags()
 
 syntax on
+
+" Rspec
+map <Leader>e :call RunLastSpec()<CR>
+map <Leader>r :call RunNearestSpec()<CR>
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>y :call RunAllSpecs()<CR>
  
 "Line length marker
 set textwidth=99
