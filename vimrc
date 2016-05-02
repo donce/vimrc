@@ -133,3 +133,17 @@ call CheckDirectory("colors")
 set bg=dark
 set t_Co=256
 colo molokai
+
+" Strip trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+    " Save last search and cursor position
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business
+    %s/\s\+$//e
+    " Restore previous search history and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
