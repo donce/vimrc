@@ -48,21 +48,23 @@ set autoindent
 " Building
 "noremap <F6> :!./%:r<CR><CR>
 "noremap <F7> :!grader ./%:r<CR>
-"if filereadable("Makefile") || filereadable("makefile")
-	"noremap <F5> :wa<CR>:make<CR>:copen<CR><CR>
-	"noremap <F6> :wa<CR>:make run<CR><CR>
-	"noremap <F12> :make clean<CR><CR><CR>
-"else
+if filereadable("Makefile") || filereadable("makefile")
+	noremap <F5> :wa<CR>:make<CR>:copen<CR><CR>
+	noremap <F6> :wa<CR>:make run<CR><CR>
+	noremap <F12> :make clean<CR><CR><CR>
+else
 	" Cpp
-	"autocmd FileType cpp noremap <F5> :make %:r<CR>:copen<CR><CR>
+	autocmd FileType cpp noremap <F5> :make %:r<CR>:copen<CR><CR>
 	" Python
-	"autocmd FileType python nnoremap <F6> :w<CR>:!python %<CR>
+	autocmd FileType python nnoremap <F6> :w<CR>:!python %<CR>
+  " Javascript
+  autocmd FileType javascript noremap <F6> :w<CR>:!node %<CR>
 	" Sh
-	"autocmd FileType sh nnoremap <F5> :w<CR>:!./%<CR>
+	autocmd FileType sh nnoremap <F5> :w<CR>:!./%<CR>
 	" Java
-	"autocmd FileType java nnoremap <F5> :w<CR>:!javac %<CR>
-	"autocmd FileType java nnoremap <F6> :!java %:r<CR>
-"endif
+	autocmd FileType java nnoremap <F5> :w<CR>:!javac %<CR>
+	autocmd FileType java nnoremap <F6> :!java %:r<CR>
+endif
 
 " Commenting
 map  \c<space>
